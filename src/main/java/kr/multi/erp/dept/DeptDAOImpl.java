@@ -12,6 +12,7 @@ public class DeptDAOImpl implements DeptDAO {
 	
 	@Override
 	public List<DeptDTO> getDeptName() {
+		
 		return null;
 	}
 
@@ -19,7 +20,7 @@ public class DeptDAOImpl implements DeptDAO {
 	public int insert(DeptDTO dept) {
 		
 		String sql = "insert into dept values(?,?,?,null,?,?,?,?,?,?,?)";
-		//??— ???•œ ê±°ë?? sql, ?’¤?— ?ˆœ?„œ??ë¡? ?¨ì£¼ê¸°
+		//??ï¿½ï¿½ ???ï¿½ï¿½ ê±°ï¿½?? sql, ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½??ï¿½? ?ï¿½ï¿½ì£¼ê¸°
 		return template.update(sql, dept.getDeptno(),dept.getDeptname(),dept.getDeptStartDay(),
 				dept.getDeptlevel(),dept.getDeptstep(),dept.getDeptuppercode(),dept.getJob_category(),
 				dept.getMgr_id(),dept.getDeptaddr(),dept.getDepttel());
@@ -27,10 +28,10 @@ public class DeptDAOImpl implements DeptDAO {
 
 	@Override
 	public List<DeptDTO> select() {
-		// jdbc ?‘?—…?•  ?•Œ ?‘?„±?–ˆ?˜ ëª¨ë“  ì½”ë“œê°? query ë©”ì†Œ?“œ ?‚´ë¶??—?„œ ??™?œ¼ë¡? ì²˜ë¦¬
-		// ë§¤ë²ˆ ?‹¬?¼ì§??Š” sqlë¬¸ê³¼ ì¡°íšŒ?•œ ? ˆì½”ë“œë¥? ?–´?–¤ dto?— ë§¤í•‘?•  ê²ƒì¸ì§? ? •ë³´ë?? ?‹´ê³? ?ˆ?Š” 
-		//RowMapper ê°ì²´ë§? ?„˜ê²¨ì£¼ë©? ??™?œ¼ë¡? ëª¨ë“  ? ˆì½”ë“œë¥? Listë¡? ë§Œë“¤?–´?„œ ë¦¬í„´
-		return template.query("select * from dept", new DeptRowMapper());//?‹¤?–‰?•  sql, ê²°ê³¼ë¥? ë§¤í•‘?•  ê²?
+		// jdbc ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ëª¨ë“  ì½”ë“œï¿½? query ë©”ì†Œ?ï¿½ï¿½ ?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ì²˜ë¦¬
+		// ë§¤ë²ˆ ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½ sqlë¬¸ê³¼ ì¡°íšŒ?ï¿½ï¿½ ?ï¿½ï¿½ì½”ë“œï¿½? ?ï¿½ï¿½?ï¿½ï¿½ dto?ï¿½ï¿½ ë§¤í•‘?ï¿½ï¿½ ê²ƒì¸ï¿½? ?ï¿½ï¿½ë³´ï¿½?? ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ 
+		//RowMapper ê°ì²´ï¿½? ?ï¿½ï¿½ê²¨ì£¼ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ëª¨ë“  ?ï¿½ï¿½ì½”ë“œï¿½? Listï¿½? ë§Œë“¤?ï¿½ï¿½?ï¿½ï¿½ ë¦¬í„´
+		return template.query("select * from dept", new DeptRowMapper());//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ sql, ê²°ê³¼ï¿½? ë§¤í•‘?ï¿½ï¿½ ï¿½?
 	}
 
 	@Override
@@ -47,8 +48,8 @@ public class DeptDAOImpl implements DeptDAO {
 
 	@Override
 	public int update(DeptDTO dept) {
-		//?ˆ˜? •?•˜ê¸? : (1)?ˆ˜? •?•  ?°?´?„°ë¥? ?½?–´?„œ ?¼?— ë¿Œë¦¬ê¸?(readë¡? ?•œë²? ?ˆ˜?–‰?•¨)  (2)?ˆ˜? •?•  ?‚´?š©?„ ?…? ¥?•˜ê³? ?—…?°?´?Š¸
-		//read?Š” list?—?„œ ?‹œ?‘
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? : (1)?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ë¿Œë¦¬ï¿½?(readï¿½? ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½)  (2)?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
+		//read?ï¿½ï¿½ list?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½
 		String sql = "update dept set mgr_id=?,deptaddr=?,depttel=? where deptno=?";
 		return template.update(sql, dept.getMgr_id(),dept.getDeptaddr(),
 							   dept.getDepttel(),dept.getDeptno());

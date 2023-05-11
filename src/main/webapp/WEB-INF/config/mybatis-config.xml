@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  <configuration>
+  	<!-- 내부에서 사용할 DTO, mapper 파일 -->
+  	<typeAliases><!-- DTO 등록하기 -->
+  	<!-- BoardDTO를 board로 지칭함 -->
+  		<typeAlias type="com.multi.erp.board.BoardDTO" alias="board"/>
+  	</typeAliases>
+  	<mappers><!-- mapper 등록하기
+  				  sql이 있는 파일은 mapper/board.xml 파일
+  				  src를 기본으로 인식함 -->
+  		<mapper resource="mapper/board.xml"/>
+  	</mappers>
+  </configuration>

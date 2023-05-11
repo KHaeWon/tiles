@@ -14,6 +14,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 // 단위테스트를 스프링과 연동하기
 // @RunWith은 단위테스트이 실행방법을 확장할 때 사용하는 어노테이션으로 ()안에 정의하는 클래스를
 // 실행해서 단위테스트-> 스프링과 연동해서 단위테스트
+
+//요거 오류 떠가지고 pom.xml에서 org.apache.maven.plugins 버전을 1.6에서 1.8로 수정함
+//플젝 선택하고 우클 -> maven -> update project로 바로 반영해주기
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/config/spring-config.xml"})
 @WebAppConfiguration

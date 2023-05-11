@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <!-- table 1개 당 mapper 1개 -->
+ <!--  보통 namespace는 패키지명과 동일하게 감 -->
+ <mapper namespace="com.multi.erp.board">
+ 	<!-- config 파일에서 패키지를 board로 알리아스 줬으니까 parameterType에 board만 쓰면 됨-->
+ 	<insert id="insert" parameterType="board">
+ 	<!-- #{}으로 변수를 연결하면 PreparedStatement의 ?와 연결됨 -->
+ 		insert into tbboard 
+ 		values(null,#{id},sysdate(),#{title},
+ 		#{content},#{category})
+ 		<!-- ; 붙이지 않게 주의하자 -->
+ 	</insert>
+ 	<!-- resultType에 alias만 적어주면 알아서 해준대.. -->
+ 	<select id="selectall" resultType="board">
+ 		select * from tbboard
+ 	</select>
+ 	
+ 	<select id="search"  resultType="board" parameterType="String">
+ 		select * from tbboard where title = #{title}
+ 	</select>
+ 	
+ 	
+ </mapper>

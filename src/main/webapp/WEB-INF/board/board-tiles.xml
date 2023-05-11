@@ -2,12 +2,16 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
-       
- <!-- 화면 하나마다 써준다고 생각 -->
+
 <tiles-definitions>
 	
+<definition name="board/writepage" extends="mainTemplate">
+	<put-attribute name="menu" value="/WEB-INF/menu/board_menu.jsp"/>
+	<put-attribute name="content" value="/WEB-INF/board/board_write.jsp"/>
+</definition>
 
-<definition name="menu/board" extends="mainTemplate">
+
+<definition name="board/list" extends="mainTemplate">
 	<put-attribute name="menu" value="/WEB-INF/menu/board_menu.jsp"/>
 	<put-attribute name="content" value="/WEB-INF/board/boardlist.jsp"/>
 </definition>

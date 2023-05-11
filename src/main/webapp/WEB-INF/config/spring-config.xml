@@ -30,8 +30,7 @@
 		location="/WEB-INF/static/common/js/" />
 	<!--custom -->
 	<resources mapping="/upload/**" location="/WEB-INF/upload/" />
-	<!-- ======================================= JSP 파일의 위치를 이용해서 뷰정보를 만들어내는 
-		ViewResolver ======================================= -->
+	<!-- ======================== JSP 파일의 위치를 이용해서 뷰정보를 만들어내는 ViewResolver ======================== -->
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
@@ -40,8 +39,7 @@
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="2"/>
 	</beans:bean>
-	<!-- ======================================= tiles를 기반으로 뷰정보를 만드는 ViewResolver등록 
-		======================================= -->
+	<!-- ======================== tiles를 기반으로 뷰정보를 만드는 ViewResolver등록 ======================== -->
 	<!-- 1.tiles설정파일을 등록 -->
 	<beans:bean id="tilesConfig"
 		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
@@ -58,23 +56,51 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1"/>
 	</beans:bean>
-	<!-- =======================================spring jdbc - Connection 설정 
-		========================================================= -->
-	<beans:bean id="ds"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- ======================== spring jdbc - Connection 설정 ======================== -->
+	<!-- jdbc에서 드라이버매니저 방식으로 커넥션을 생성해서 관리
+	->요청이 들어오면 커넥션을 생성해서 넘겨주는 방식 -->
+	<!-- <beans:bean id="ds"	class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName"
 			value="com.mysql.cj.jdbc.Driver" />
 		<beans:property name="url"
 			value="jdbc:mysql://127.0.0.1:3306/jdbc?serverTimezone=UTC" />
-		<beans:property name="username" value="root" />
-		<beans:property name="password" value="1234" />
+		<beans:property name="username" value="exam" />
+		<beans:property name="password" value="exam" />
+	</beans:bean>  -->
+	
+	<!-- ======================== 커넥션 풀 등록 ========================-->
+	<beans:bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+		<beans:property name="driverClassName"	value="com.mysql.cj.jdbc.Driver" />
+		<beans:property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/erp?serverTimezone=UTC" />
+		<beans:property name="username" value="erp" />
+		<beans:property name="password" value="erp" />
+		<!--  <beans:property name="maximumPoolSize" value="20" />-->
 	</beans:bean>
-	<beans:bean id="template"
-		class="org.springframework.jdbc.core.JdbcTemplate">
+	
+	<!-- destroy-method : 객체가 소멸될 때 호출, 이건 자원 반납에 관한 것! -->
+	
+	<beans:bean id="ds" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<beans:constructor-arg ref="hikariConfig"/>
+	</beans:bean> 
+	<!-- 스프링에서 db 연동할 수 있는 clrud 메소드를 제공하는 클래스 -->
+	<beans:bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
 		<beans:constructor-arg ref="ds" />
 	</beans:bean>
 
-
+	<!-- ======================== mybatis를 사용하기 위한 설정 ======================== -->
+	<!-- mybatis 내부에서 DataSource를 통해 connection을 획득해서 관리하는 객체 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="ds" />
+		<beans:property name="configLocation" value="/WEB-INF/config/mybatis-config.xml"/> 
+		<!-- configLocation : 메인 설정파일 등록 -->
+	</beans:bean>
+	
+	<!-- mybatis의 핵심클래스(sql을 실행하기 위한 기능을 제공) -->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg ref="sqlSessionFactory"/>
+	</beans:bean>
+	
+	<!-- ========================================================================= -->
 	<!-- 스프링컨테이너가 start될 떄 base-package에 명시된 패키지를 읽어서 컨트롤러를 객체로 생성 -->
 	<!-- <context:component-scan base-package="com.multi.springmvc" /> -->
 	<context:component-scan base-package="kr" />

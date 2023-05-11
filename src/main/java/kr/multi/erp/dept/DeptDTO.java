@@ -1,8 +1,27 @@
 package kr.multi.erp.dept;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+//@Getter//getter
+//@Setter//setter
+//@ToString//toString
+@Data//setter, getter, toString 전부 다를 일컫는 어노테이션
+@AllArgsConstructor//모든 멤버변수로 생성자 만들기(전체 멤버변수를 매개변수로 하는 생성자 정의)
+@NoArgsConstructor //기본생성자
+@RequiredArgsConstructor //실제로 무엇을 가지고 생성자를 만들 것인지 선별해서 쓸 때 사용
 public class DeptDTO {
+	@NonNull //lombok 어노테이션임! import 주의
 	private String deptno;
-	private String deptname;
+	@NonNull
+	private String deptname;//@RequiredArgsConstructor와 함께 원하는 변수에 @NonNull 사용
+							//이러면 2개짜리 생성자를 만들겠다는 뜻
 	private String deptStartDay;
 	private String deptEndDay;
 	private String deptlevel;
@@ -12,109 +31,6 @@ public class DeptDTO {
 	private String mgr_id;
 	private String deptaddr;
 	private String depttel;
-	public DeptDTO(){
-		
-	}
 	
-	public DeptDTO(String deptno, String deptname) {
-		super();
-		this.deptno = deptno;
-		this.deptname = deptname;
-	}
-
-	public DeptDTO(String deptno, String deptname, String deptStartDay,
-			String deptEndDay, String deptlevel, String deptstep,
-			String deptuppercode, String job_category, String mgr_id,
-			String deptaddr, String depttel) {
-		super();
-		this.deptno = deptno;
-		this.deptname = deptname;
-		this.deptStartDay = deptStartDay;
-		this.deptEndDay = deptEndDay;
-		this.deptlevel = deptlevel;
-		this.deptstep = deptstep;
-		this.deptuppercode = deptuppercode;
-		this.job_category = job_category;
-		this.mgr_id = mgr_id;
-		this.deptaddr = deptaddr;
-		this.depttel = depttel;
-	}
-	@Override
-	public String toString() {
-		return "DeptDTO [deptno=" + deptno + ", deptname=" + deptname
-				+ ", deptStartDay=" + deptStartDay + ", deptEndDay="
-				+ deptEndDay + ", deptlevel=" + deptlevel + ", deptstep="
-				+ deptstep + ", deptuppercode=" + deptuppercode
-				+ ", job_category=" + job_category + ", mgr_id=" + mgr_id
-				+ ", deptaddr=" + deptaddr + ", depttel=" + depttel + "]";
-	}
-	public String getDeptno() {
-		return deptno;
-	}
-	public void setDeptno(String deptno) {
-		this.deptno = deptno;
-	}
-	public String getDeptname() {
-		System.out.println("============================getDeptname()============================");
-		return deptname;
-	}
-	public void setDeptname(String deptname) {
-		System.out.println("============================setDeptname()============================");
-		this.deptname = deptname;
-	}
-	public String getDeptStartDay() {
-		return deptStartDay;
-	}
-	public void setDeptStartDay(String deptStartDay) {
-		this.deptStartDay = deptStartDay;
-	}
-	public String getDeptEndDay() {
-		return deptEndDay;
-	}
-	public void setDeptEndDay(String deptEndDay) {
-		this.deptEndDay = deptEndDay;
-	}
-	public String getDeptlevel() {
-		return deptlevel;
-	}
-	public void setDeptlevel(String deptlevel) {
-		this.deptlevel = deptlevel;
-	}
-	public String getDeptstep() {
-		return deptstep;
-	}
-	public void setDeptstep(String deptstep) {
-		this.deptstep = deptstep;
-	}
-	public String getDeptuppercode() {
-		return deptuppercode;
-	}
-	public void setDeptuppercode(String deptuppercode) {
-		this.deptuppercode = deptuppercode;
-	}
-	public String getJob_category() {
-		return job_category;
-	}
-	public void setJob_category(String job_category) {
-		this.job_category = job_category;
-	}
-	public String getMgr_id() {
-		return mgr_id;
-	}
-	public void setMgr_id(String mgr_id) {
-		this.mgr_id = mgr_id;
-	}
-	public String getDeptaddr() {
-		return deptaddr;
-	}
-	public void setDeptaddr(String deptaddr) {
-		this.deptaddr = deptaddr;
-	}
-	public String getDepttel() {
-		return depttel;
-	}
-	public void setDepttel(String depttel) {
-		this.depttel = depttel;
-	}
-	
+	//setter getter 로직이 필요하면 필요한 것만 추가해서 쓰셈
 }
