@@ -29,8 +29,8 @@ public class DeptController {
     	//사용자가 입력한 데이터 확인
     	System.out.println(dept);
     	service.insert(dept);
-    	return "main/index";
-    	
+//    	return "main/index"; 나니?
+    	return "redirect:/dept/list.do";
     	//한글세팅 하는 법은 강사님 블로그 참조
     }
     
@@ -38,7 +38,7 @@ public class DeptController {
     @RequestMapping("/dept/list.do")
     public ModelAndView list() {
     	//ModelAndView mav = new ModelAndView("dept/deptlist_jstl");
-    	ModelAndView mav = new ModelAndView("deptlist");
+    	ModelAndView mav = new ModelAndView("dept/deptlist");
     	//서비스의 메소드 호출
     	List<DeptDTO> deptlist = service.select();
     	System.out.println(deptlist);

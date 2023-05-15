@@ -18,15 +18,20 @@ public interface BoardDAO {
 	List<BoardDTO> search(String data);
 	//제목,작성자, 본문, 작성일별로 검색
 	List<BoardDTO> search(String tag,String data);
+	//category별로 검색
 	List<BoardDTO> findByCategory(String category);
 	
 	//=================첨부파일을 조회하기 위한 기능=========================
 	
+	//★dao는 sqp 하나 당 메소드 하나임을 기억하자!
+	
+	
 	//첨부파일을 저장하기 위한 메소드	
-	//int insertFile(List<BoardFileDTO> boardfiledtolist);
+	int insertFile(List<BoardFileDTO> boardfiledtolist);
 	//게시글을 상세보기한 경우 보여질 업로드한 파일의 목록 조회
-	//List<BoardFileDTO> getFileList(String boardno);
-	//BoardFileDTO getFile(BoardFileDTO inputdata);
+	List<BoardFileDTO> getFileList(String boardno);
+	//파일 하나에 대한 정보
+	BoardFileDTO getFile(BoardFileDTO inputdata);
 }
 
 

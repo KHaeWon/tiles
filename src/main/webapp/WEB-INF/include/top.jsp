@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,23 +32,28 @@
 			<a href="#" style="position:absolute;top:30px;font-size: 18pt; font-weight: bolder;text-decoration: none;padding-left: 10px">KimSaemERP</a>
 			<ul class="nav navbar-nav navbar-right" 
 			 style="position:relative ;top:20px" >
-			
+			<c:choose>
+				<c:when test="${user==null }">
 					<li style="margin-right: 20px;height: 70px">
 					<a href="/erp/emp/login.do"><span class="glyphicon glyphicon-log-in">
 							</span>Login</a></li>
-					
-			
+						</ul>
+				</c:when>
+					<c:otherwise>
 				
 			
-						<li><a href="#"><span class="glyphicon glyphicon-log-out"></span>
+						<li><a href="/erp/emp/logout.do"><span class="glyphicon glyphicon-log-out"></span>
 								Logout</a></li>
+						<li><a href="/erp/emp/mypage"><span class="glyphicon glyphicon-log-out"></span>
+								mypage</a></li>
 					</ul>
 					
 					<span  class="navbar-form pull-right" >	
 						<img  class="img-circle" style="width: 60px;height: 70px"
-									src="/erp/images/kimdong.jpg"  />
+									src="/erp/images/${user.profile_photo }"  />
 					</span>  
-		
+					</c:otherwise>
+			</c:choose>
 			<form class="navbar-form pull-right" style="position:relative ;top:20px">
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">
@@ -65,7 +71,8 @@
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="/erp/menu/insa.do">업무관리</a></li>
 					<li><a href="#">자원관리</a></li>
-					<li><a href="/erp/board/list.do">커뮤니티</a></li>
+					<li><a href="/erp/board/list.do?category=all">커뮤니티</a></li>
+					<!-- category=all을 넣어줌! 내가 원하는 값을 임의로 넘길 수 있음 -->
 					<li><a href="#">일정관리</a></li>
 					<li><a href="#">휴가관리</a></li>
 					<li><a href="#">결재</a></li>

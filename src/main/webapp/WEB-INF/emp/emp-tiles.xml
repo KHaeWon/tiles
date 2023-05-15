@@ -7,10 +7,12 @@
 <tiles-definitions>
 	
 <!-- 기본만 쓸 것이기 때문에 교체 없이 감 -->
-<definition name="login" extends="mainTemplate">
-	
-		
+<definition name="login" extends="mainTemplate">		
 </definition>
 	
+<definition name="member/insertPage" extends="mainTemplate">
+	<put-attribute name="menu" value="/WEB-INF/menu/insa_menu.jsp"/>	
+	<put-attribute name="content" value="/WEB-INF/emp/register.jsp"/>	
+</definition>
 
 </tiles-definitions>

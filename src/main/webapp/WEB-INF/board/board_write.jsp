@@ -25,13 +25,13 @@
 			<div class="form-panel">
 			
 				<form class="form-horizontal style-form" 
-					action="/erp/board/write" method="post">
+					action="/erp/board/write" method="post" enctype="multipart/form-data"><!-- 파일업로드를 위한 추가작업 -->
 					<div class="form-group" style="border: 1px solid #eff2f7;">
 						
 						<label class="col-sm-2 col-sm-2 control-label">작성자</label>
 						<div class="col-sm-10">
-							<input type="hidden" name="id" value="9401023jang">
-							<p class="form-control-static">김서연</p>
+							<input type="hidden" name="id" value="${user.id}">
+							<p class="form-control-static">${user.id}</p>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 col-sm-2 control-label">게시글 유형</label>
@@ -61,6 +61,58 @@
 
 							</div>
 						</div>
+						
+						<!-- 파일 업로드를 위한 추가 작업 -->
+						<div class="form-group">
+							<div class="col-md-2 text-right">
+								<label for="files" class="control-label">파일1</label>
+							</div>
+							<div class="col-md-8">
+								<input type="file" class="form-control input-lg" name="files"
+									id="files" placeholder="파일선택" multiple="multiple">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-2 text-right">
+								<label for="title" class="control-label">파일2</label>
+							</div>
+							<div class="col-md-8">
+								<input type="file" class="form-control input-lg" name="files"
+									id="title" placeholder="파일선택">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-2 text-right">
+								<label for="files" class="control-label">파일3</label>
+							</div>
+							<div class="col-md-8">
+								<input type="file" class="form-control input-lg" name="files"
+									id="files" placeholder="파일선택">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-2 text-right">
+								<label for="files" class="control-label">파일4</label>
+							</div>
+							<div class="col-md-8">
+								<input type="file" class="form-control input-lg" name="files"
+									id="files" placeholder="파일선택">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-md-2 text-right">
+								<label for="title" class="control-label">파일5</label>
+							</div>
+							<div class="col-md-8">
+								<input type="file" class="form-control input-lg" name="files"
+									id="title" placeholder="파일선택">
+							</div>
+						</div>
+
+						
+						
+						
+						
 						<div class="form-group">
 							<div class="col-lg-4 text-center"></div>
 							<div class="col-lg-2 text-center">

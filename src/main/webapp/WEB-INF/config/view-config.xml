@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans
+	xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- View가 response 되는 컨트롤러의 메소드를 대신할 수 있는 설정파일 -->
+<!-- view-name은 emp-tiles의 definition의 name으로부터 온 것, 똑같이 써주어야 함! -->
+<view-controller path="/emp/insert" view-name="member/insertPage"/>
+<!-- view-controller라는 태그를 통해서 컨트롤러에 메소드를 만들지 않고 똑같은 기능을 수행하게 할 수 있다. 
+이거 한줄이 컨트롤러의 메소드 우다다다 쓰는 거랑 똑같은 거임 -->
+
+</beans:beans>

@@ -1,8 +1,11 @@
 package com.multi.erp.board;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 @Repository
@@ -44,20 +47,21 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public BoardDTO read(String board_no) {
-		// TODO Auto-generated method stub
-		return null;
+		//board.xml 참고해봐
+		// 네임스페이스명.id
+		return sqlSessionTemplate.selectOne("com.multi.erp.board.read",board_no);
 	}
 
 	@Override
 	public int update(BoardDTO board) {
-		// TODO Auto-generated method stub
-		return 0;
+
+		return sqlSessionTemplate.delete("com.multi.erp.board.update",board);
 	}
 
 	@Override
 	public int delete(String board_no) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSessionTemplate.delete("com.multi.erp.board.delete",board_no);
 	}
 
 	@Override
@@ -68,12 +72,37 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> search(String tag, String data) {
+		List<BoardDTO> list = null;
+		System.out.println(tag+",=======================,"+data);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("tag", tag); //key에 정의한 값을 mybatis에서 매핑
+		map.put("data", data);
+		list = sqlSessionTemplate.selectList("com.multi.erp.board.dynamicsearch",map);
+		return list;
+	}
+
+	@Override
+	public List<BoardDTO> findByCategory(String category) {
+		System.out.println(category);
+		List<BoardDTO> list = sqlSessionTemplate.selectList("com.multi.erp.board.categorySearch",category);
+		System.out.println("===dao==="+list.size());
+		return list;
+	}
+
+	@Override
+	public int insertFile(List<BoardFileDTO> boardfiledtolist) {
+		// TODO Auto-generated method stub
+		return sqlSessionTemplate.insert("com.multi.erp.board.fileinsert", boardfiledtolist);
+	}
+
+	@Override
+	public List<BoardFileDTO> getFileList(String boardno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<BoardDTO> findByCategory(String category) {
+	public BoardFileDTO getFile(BoardFileDTO inputdata) {
 		// TODO Auto-generated method stub
 		return null;
 	}

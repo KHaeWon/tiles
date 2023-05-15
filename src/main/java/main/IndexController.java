@@ -10,11 +10,6 @@ public class IndexController {
 		return "index";//뷰의 이름
 	}
 	
-	@RequestMapping("/emp/login.do")
-	public String login() {
-		return "login";//뷰의 이름
-	}
-	
 	@RequestMapping("/menu/board.do")
 	public String menuboard() {
 		return "menu/board";//뷰의 이름
