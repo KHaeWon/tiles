@@ -96,13 +96,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardFileDTO> getFileList(String boardno) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getFileList(boardno);
 	}
 
 	@Override
 	public BoardFileDTO getFile(BoardFileDTO inputdata) {
 		// TODO Auto-generated method stub
-		return null;
+		return dao.getFile(inputdata);
 	}
 
 }

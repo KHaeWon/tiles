@@ -1,4 +1,4 @@
-package com.multi.erp.board;
+package com.multi.erp.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.multi.erp.board.BoardFileDTO;
 
 @Service
 public class FileUploadLogicService {

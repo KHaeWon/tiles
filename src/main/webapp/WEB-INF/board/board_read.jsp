@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="true"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -76,6 +76,34 @@
 				<label for="title" class="control-label">제목</label>
 			</div>
 			<div class="col-md-8">${board.title }</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-2 text-right">
+				<label for="title" class="control-label">첨부파일</label>
+			</div>
+			<div class="col-md-8">
+				<!-- db에 저장될 첨부파일 출력 -->
+				<c:forEach var="file" items="${boardfiledtolist }">
+					<h5><a href="/erp/board/download/${board.id }/${board.board_no}/${file.boardFileno}">${file.originalFilename }</a></h5>
+					<img src="/erp/upload/${file.storeFilename }" width="300">
+					<!-- 범위가 큰 순서대로! 아이디가 게시글을 쓰고~
+					
+					여기서 말하는 boardFileno는 아래와 같다!
+					
+					select * from board_file;
+					+----------+------------------+------------------------------------------+-------------+
+					| board_no | originalFilename | storeFilename                            | boardFileno |
+					+----------+------------------+------------------------------------------+-------------+
+					| 33       | kbr.jpg          | f04a840d-e449-4823-8914-73d7fe0aa32e.jpg | 1           |
+					| 33       | Yeona.jpg        | 4f8bccad-d93f-4e30-95d0-b5368d7e27b1.jpg | 2           |
+					| 33       | jang.jpg         | 2a68d3c3-8a5d-481d-b1ae-3716801a76f5.jpg | 3           |
+					| 34       | aa               | 2278b032-4258-47f7-9547-49b6058c1130.aa  | 1           |
+					| 34       | bg1.png          | 192b4b7b-7155-4d69-80dc-fa6a431abfbe.png | 2           |
+					+----------+------------------+------------------------------------------+-------------+
+					
+					 -->
+				</c:forEach>
+			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-md-2 text-right">

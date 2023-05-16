@@ -6,7 +6,21 @@
  <!--  보통 namespace는 패키지명과 동일하게 감 -->
  
  <mapper namespace="com.multi.erp.board">
+ 	
  	<!-- 파일업로드를 위한 추가 작업 -->
+ 	<!-- 컬럼명 = #{파라미터명}
+ 		 parameterType이 DTO면 DTO에 맞게 써야 함 -->	
+ 	<select id="getfileinfo" parameterType="boardfile" resultType="boardfile">
+ 		select * from board_file
+ 		where board_no = #{board_no} 
+ 			  and boardFileno = #{boardFileno}
+ 	</select>
+ 	<select id="fileselect" parameterType="String" resultType="boardfile">
+ 		select * from board_file
+ 		where board_no=#{board_no}
+ 	</select>
+ 	
+ 	
  	<insert id="fileinsert" parameterType="java.util.List">
  		insert into board_file values
  		<foreach collection="list" item="file" separator=",">
